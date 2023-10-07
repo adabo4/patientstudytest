@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 // MongoDB connection URL 
-const mongoURI = process.env.REACT_APP_MONGODB_URI;
+const mongoURI = process.env.MONGODB_URI;
 
 // MongoDB options
 const mongoOptions = {
