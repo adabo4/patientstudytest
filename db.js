@@ -1,9 +1,10 @@
 // db.js
 
 const mongoose = require('mongoose');
+require("dotenv").config();
 
 // MongoDB connection URL 
-const mongoURI = process.env.MONGODB_URI;
+const mongoURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@patientstudy.mmjxo14.mongodb.net/?retryWrites=true&w=majority`
 
 // MongoDB options
 const mongoOptions = {
