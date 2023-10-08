@@ -4,12 +4,10 @@ const express = require('express');
 const router = express.Router();
 const PatientTest = require('../models/patient');
 
-// ... Define your API routes using the Patient model ...
-
 
 router.get('/', async (req, res) => {
     try {
-        const patients = await PatientTest.find(); // Fetch all patients
+        const patients = await PatientTest.find();
         res.json(patients);
     } catch (error) {
         console.error('Error fetching patients:', error);
@@ -25,6 +23,23 @@ router.post('/', async (req, res) => {
     } catch (error) {
         console.error('Error creating patient:', error);
         res.status(500).json({ error: 'Server error' });
+    }
+});
+
+
+router.put('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updatedData = req.body;
+
+        const updatedPatient = await PatientTest.findByIdAndUpdate(id, updatedData, {
+            new: true,
+        });
+
+        res.json(updatedPatient);
+    } catch (error) {
+        console.error('Error updating patient:', error);
+        res.status(500).json({ error: 'Failed to update patient' });
     }
 });
 

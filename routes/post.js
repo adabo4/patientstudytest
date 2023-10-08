@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const LoginTest = require('../models/login');
 
-// Define the POST route for creating a patient
 
 
 router.post('/', async (req, res) => {
