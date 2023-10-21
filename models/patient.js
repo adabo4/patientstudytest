@@ -9,8 +9,10 @@ const patientTestSchema = new mongoose.Schema({
     birth_number: String,
     drug_name: String,
     lot_number: String,
+    expiration_date: String,
     dosage: String,
-    count: Number
+    count: String,
+    checked: Boolean
 });
 
 const PatientTest = mongoose.model('PatientTest', patientTestSchema);

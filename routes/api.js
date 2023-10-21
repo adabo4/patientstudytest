@@ -43,6 +43,36 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+router.put('/patients/:patientId/toggle-check', async (req, res) => {
+    const { patientId } = req.params;
+
+    try {
+        const patient = await Patient.findById(patientId);
+        if (!patient) {
+            return res.status(404).json({ message: 'Patient not found' });
+        }
+
+        // Toggle the checked status
+        patient.checked = !patient.checked;
+        res.send(patient.checked)
+
+
+        // Save the updated patient to the database
+        await patient.save();
+
+        res.json(patient);
+        console.log(patient.checked)
+
+    } catch (error) {
+        console.error('Error toggling patient checked status:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+
+
+
+
 router.delete('/:id', async (req, res) => {
     try {
         const patientId = req.params.id;
